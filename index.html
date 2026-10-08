@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Turkey &amp; Umrah 2027</title>
+<meta name="theme-color" content="#f2f2f7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Turkey Trip">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.json">
+<style>:root{padding-top:env(safe-area-inset-top,0px)}[hidden]{display:none!important}img{max-width:100%}</style>
+</head><body>
+<style>
+/* Layout: iOS inset-grouped lists on system grey, large title, calendar-tile day rows, Reminders-style check circles, translucent bottom tab bar. Light only. */
+:root{
+  --bg:#f2f2f7; --cell:#ffffff; --label:#000000; --label2:#3c3c4399; --label3:#3c3c434d;
+  --sep:#c6c6c8; --fill:#7878801f; --blue:#007aff; --green:#34c759; --orange:#ff9500; --red:#ff3b30; --teal:#30b0c7;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--label);font-family:var(--font);font-size:17px;line-height:1.3;letter-spacing:-.01em;margin:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto;padding:0 16px calc(96px + env(safe-area-inset-bottom,0px))}
+a{color:var(--blue);text-decoration:none}
+button{font-family:inherit}
+.num{font-variant-numeric:tabular-nums}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* large title */
+.lt{padding-top:14px}
+.lt .ov{font-size:13px;font-weight:600;color:var(--label2);text-transform:uppercase;letter-spacing:.02em}
+.lt h1{font-size:34px;font-weight:700;letter-spacing:.01em;margin:2px 0 0;line-height:1.15}
+.lt p{margin:4px 0 0;font-size:15px;color:var(--label2)}
+
+/* grouped */
+.gh{font-size:13px;color:var(--label2);text-transform:uppercase;padding:22px 16px 7px;letter-spacing:-.005em}
+.gf{font-size:13px;color:var(--label2);padding:7px 16px 0;line-height:1.35}
+.group{background:var(--cell);border-radius:12px;overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;padding:11px 16px;min-height:44px;position:relative}
+.row+.row::before,.sub+.row::before{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep)}
+.row.ind+.row.ind::before{left:52px}
+
+/* today card */
+.today{padding:16px;display:grid;gap:12px}
+.today .k{font-size:13px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.02em}
+.today h2{font-size:22px;font-weight:700;margin:0;line-height:1.2;text-wrap:balance}
+.today p{margin:0;color:var(--label2);font-size:15px}
+.ring{display:flex;align-items:center;gap:14px}
+.bar{flex:1;height:6px;background:var(--fill);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--green);border-radius:3px;transition:width .35s}
+.ringt{font-size:13px;color:var(--label2);white-space:nowrap}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:12px;font-size:15px;font-weight:600;background:var(--fill);color:var(--blue);border:0;cursor:pointer}
+.pill.fill{background:var(--blue);color:#fff}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills .pill{flex:1 1 auto}
+
+/* day rows */
+.dayrow{width:100%;background:none;border:0;text-align:left;cursor:pointer;color:inherit;font-size:17px}
+.cal{width:44px;flex:0 0 44px;border-radius:10px;background:var(--cell);box-shadow:0 0 0 .5px var(--sep) inset;text-align:center;overflow:hidden;padding-bottom:2px}
+.cal b{display:block;font-size:10px;font-weight:600;color:var(--red);text-transform:uppercase;padding-top:4px;letter-spacing:.03em}
+.cal span{display:block;font-size:21px;font-weight:400;line-height:1.1}
+.dayrow.isToday .cal{background:var(--red);box-shadow:none}
+.dayrow.isToday .cal b,.dayrow.isToday .cal span{color:#fff}
+.dayrow.isPast .cal{opacity:.45}
+.dt{flex:1;min-width:0}
+.dt .t{font-weight:600;font-size:17px;line-height:1.25}
+.dt .m{font-size:14px;color:var(--label2);margin-top:2px}
+.chev{color:var(--label3);flex:0 0 auto;transition:transform .2s}
+.dayrow[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.badge{font-size:12px;font-weight:600;color:var(--green);background:#34c7591f;border-radius:10px;padding:2px 7px;margin-left:6px;vertical-align:2px}
+.sub{background:#fbfbfd;padding:4px 0 10px;position:relative}
+.sub::before{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep)}
+.sublbl{font-size:12px;color:var(--label2);text-transform:uppercase;padding:12px 16px 6px;letter-spacing:.01em}
+
+/* callout */
+.call{margin:10px 16px 2px;padding:11px 12px;border-radius:10px;font-size:15px;line-height:1.35;display:flex;gap:10px}
+.call svg{flex:0 0 auto;margin-top:1px}
+.call.warn{background:#ff95001a}
+.call.info{background:#007aff14}
+.call b{font-weight:600}
+
+/* legs */
+.leg{display:flex;align-items:center;gap:10px;padding:10px 16px;color:var(--label);position:relative}
+.leg+.leg::before{content:"";position:absolute;top:0;left:52px;right:0;height:.5px;background:var(--sep)}
+.ico{width:28px;height:28px;flex:0 0 28px;border-radius:7px;display:grid;place-items:center;color:#fff}
+.ico.car{background:var(--blue)}
+.leg .lt2{flex:1;min-width:0;font-size:15px}
+.leg .tm{font-size:15px;color:var(--label2)}
+.total{font-size:13px;color:var(--label2);padding:4px 16px 0 54px}
+
+/* stops: reminders-style */
+.stop{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;position:relative}
+.stop+.stop::before{content:"";position:absolute;top:0;left:52px;right:0;height:.5px;background:var(--sep)}
+.chk{appearance:none;-webkit-appearance:none;width:24px;height:24px;flex:0 0 24px;border-radius:50%;border:1.5px solid #c7c7cc;margin:0;cursor:pointer;display:grid;place-items:center;background:var(--cell)}
+.chk:checked{background:var(--green);border-color:var(--green)}
+.chk:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.stop label{flex:1;min-width:0;cursor:pointer}
+.stop .n{font-size:16px;display:block;line-height:1.3}
+.stop .d{font-size:14px;color:var(--label2);display:block;margin-top:2px;line-height:1.3}
+.stop.done .n{color:var(--label2)}
+.sg{font-size:11px;font-weight:600;color:var(--teal);margin-left:6px;text-transform:uppercase;letter-spacing:.02em}
+.maplink{font-size:15px;padding:2px 0 2px 6px;white-space:nowrap;align-self:center}
+
+/* stays */
+.stay{display:block;padding:12px 16px;position:relative}
+.stay+.stay::before{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep)}
+.stay .h{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.stay .h b{font-size:17px;font-weight:600}
+.stay .h span{font-size:14px;color:var(--label2);white-space:nowrap}
+.inrow{display:flex;gap:8px;margin-top:8px;align-items:center}
+.field{flex:1;min-width:0;font:16px var(--font);padding:9px 12px;border-radius:10px;border:0;background:var(--fill);color:var(--label)}
+.field::placeholder{color:var(--label3)}
+textarea.field{width:100%;min-height:90px;resize:vertical;border-radius:12px;background:var(--cell);display:block}
+
+/* tab bar */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(249,249,249,.86);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid #0000004d;padding:6px 0 calc(4px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center}
+.tabbar .in{display:flex;width:100%;max-width:600px}
+.tabbar button{flex:1;background:none;border:0;display:grid;justify-items:center;gap:2px;font-size:10.5px;font-weight:500;color:#999;cursor:pointer;padding:2px 0}
+.tabbar button[aria-selected="true"]{color:var(--blue)}
+
+.reset{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:0 16px;font-size:15px}
+.reset button{background:none;border:0;color:var(--red);font-size:17px;padding:10px 0;cursor:pointer}
+.reset button.cancel{color:var(--blue)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="lt">
+    <div class="ov">15 – 28 January 2027</div>
+    <h1 id="ptitle">Turkey &amp; Umrah</h1>
+    <p id="psub">Istanbul · Aegean · Antalya · Cappadocia · Madina · Makkah</p>
+  </header>
+
+  <main id="pane-route">
+    <div class="gh">Now</div>
+    <div class="group"><div class="today" id="now"></div></div>
+    <div class="gh">Itinerary</div>
+    <div class="group" id="days"></div>
+    <div class="gf">Drive times are from your sheet and don't include stops. Tap Map to open Google Maps.</div>
+  </main>
+
+  <main id="pane-stays" hidden>
+    <div class="gh">Hotels · 12 nights</div>
+    <div class="group" id="stays"></div>
+    <div class="gf">Type each hotel's name once. Maps then finds that exact hotel, and every drive starts and ends there.</div>
+  </main>
+
+  <main id="pane-check" hidden>
+    <div class="gh">Before you fly</div>
+    <div class="group" id="pre"></div>
+    <div class="call info" style="margin:10px 0 0">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><b>Offline maps:</b> in Google Maps tap your profile → Offline maps → Select your own map. Save Istanbul, Izmir–Pamukkale, Fethiye–Antalya and Cappadocia so navigation works without signal.</span>
+    </div>
+    <div class="gh">Pack for January</div>
+    <div class="group" id="pack"></div>
+    <div class="gh">Emergency</div>
+    <div class="group">
+      <div class="row"><span style="flex:1">Turkey · police, ambulance, fire</span><b class="num">112</b></div>
+      <div class="row"><span style="flex:1">Saudi Arabia · emergency</span><b class="num">911</b></div>
+    </div>
+    <div class="gh">Notes</div>
+    <textarea class="field" id="emnotes" placeholder="Embassy numbers, insurance policy, car hire contact…"></textarea>
+    <div class="gh"></div>
+    <div class="group"><div class="reset" id="resetbox"><button id="resetBtn">Clear All Ticks</button></div></div>
+    <div class="gf">Ticks and hotel names are saved on this phone only.</div>
+  </main>
+</div>
+
+<nav class="tabbar" role="tablist"><div class="in">
+  <button role="tab" aria-selected="true" data-tab="route"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg>Route</button>
+  <button role="tab" aria-selected="false" data-tab="stays"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V8l9-5 9 5v12"/><path d="M3 20h18M9 20v-6h6v6"/></svg>Hotels</button>
+  <button role="tab" aria-selected="false" data-tab="check"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="1.5"/><circle cx="5" cy="12" r="1.5"/><circle cx="5" cy="18" r="1.5"/><path d="M10 6h11M10 12h11M10 18h11"/></svg>Checklist</button>
+</div></nav>
+
+<script>
+(function(){
+const YEAR=2027, KEY="turkey-umrah-2027";
+let S={done:{},hotel:{},open:{},em:""};
+try{const r=localStorage.getItem(KEY); if(r) S=Object.assign(S,JSON.parse(r));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const place=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
+const dir=(a,b,w)=>"https://www.google.com/maps/dir/?api=1&origin="+encodeURIComponent(a)+"&destination="+encodeURIComponent(b)+(w&&w.length?"&waypoints="+encodeURIComponent(w.join("|")):"")+"&travelmode=driving";
+
+const STAYS=[
+ {id:"ist1",city:"Istanbul",area:"Sultanahmet, Istanbul",n:2,in:15,out:17},
+ {id:"izm",city:"Izmir",area:"Izmir",n:1,in:17,out:18},
+ {id:"fet",city:"Fethiye",area:"Fethiye",n:1,in:18,out:19},
+ {id:"ant",city:"Antalya",area:"Kaleiçi, Antalya",n:2,in:19,out:21},
+ {id:"gor",city:"Cappadocia",area:"Göreme",n:2,in:21,out:23},
+ {id:"ist2",city:"Istanbul",area:"Taksim Square, Istanbul",n:1,in:23,out:24},
+ {id:"mad",city:"Madina",area:"Masjid an-Nabawi, Madina",n:1,in:25,out:26},
+ {id:"mak",city:"Makkah",area:"Masjid al-Haram, Makkah",n:2,in:26,out:28}
+];
+const hotelQ=id=>{const s=STAYS.find(x=>x.id===id);const h=(S.hotel[id]||"").trim();return h?h+", "+s.city:s.area;};
+
+const DAYS=[
+ {d:15,title:"Arrive Istanbul",stay:"ist1",
+  stops:[["Blue Mosque","Blue Mosque Istanbul","Closed to visitors at prayer times; Friday midday is longest."],
+         ["Hagia Sophia","Hagia Sophia Istanbul","Right across from the Blue Mosque.",1]],
+  info:"<b>Jumu'ah today.</b> 15 Jan is a Friday. Pray at the Blue Mosque and sightsee after."},
+ {d:16,title:"Istanbul",stay:"ist1",
+  stops:[["Grand Bazaar","Grand Bazaar Istanbul","Closed Sundays, so today is your chance."],
+         ["Bosphorus cruise","Eminönü Bosphorus cruise pier","Cold on deck at sunset; take a jacket."],
+         ["Spice Bazaar","Spice Bazaar Istanbul","Next to the Eminönü piers.",1]]},
+ {d:17,title:"Istanbul → Izmir → Çeşme",stay:"izm",
+  legs:[["@ist1","Izmir","4:59"],["Izmir","Çeşme","1:03"],["Çeşme","@izm","1:10"]],
+  stops:[["Çeşme Castle & marina","Çeşme Castle","Seaside town, quiet in January."]],
+  warn:"<b>About 7 hr 10 min of driving.</b> Leave Istanbul by 7:30. Sunset is around 5:50 pm. If tired, skip Çeşme and rest in Izmir; tomorrow is harder."},
+ {d:18,title:"Ephesus → Pamukkale → Fethiye",stay:"fet",
+  legs:[["@izm","Ephesus Ancient City","1:13"],["Ephesus Ancient City","Pamukkale Travertines","1:58"],["Pamukkale Travertines","@fet","2:41"]],
+  stops:[["Ephesus","Ephesus Ancient City","Allow 2 to 2.5 hrs. Library of Celsus, Great Theatre."],
+         ["Pamukkale","Pamukkale Travertines","Shoes off on the terraces. Bring a towel."],
+         ["Hierapolis","Hierapolis Ancient City","On top of Pamukkale, same ticket.",1]],
+  warn:"<b>Hardest day of the trip.</b> Almost 6 hrs driving plus 4–5 hrs sightseeing. Leave Izmir by 7:00. The mountain road to Fethiye will be after dark."},
+ {d:19,title:"Saklıkent → Antalya",stay:"ant",
+  legs:[["@fet","Saklıkent Gorge","0:48"],["Saklıkent Gorge","@ant","2:43"]],
+  stops:[["Saklıkent Gorge","Saklıkent Gorge","See the entrance and the wooden walkway."],
+         ["Tlos Ancient City","Tlos Ancient City","Lycian rock tombs about 15 min away. Good backup.",1]],
+  warn:"<b>January:</b> from November to March the river is high and you usually can't walk into the gorge. Ask at the gate; if it's closed, add Tlos."},
+ {d:20,title:"Antalya",stay:"ant",
+  stops:[["Kaleiçi (Old Town)","Kaleiçi Antalya","Lanes, old harbour, Ottoman houses."],
+         ["Hadrian's Gate","Hadrian's Gate Antalya","Roman gate at the edge of Kaleiçi."],
+         ["Düden Waterfalls","Lower Düden Waterfalls","Falls straight into the sea.",1]],
+  info:"<b>Easy day.</b> Rest up; the longest drive is tomorrow."},
+ {d:21,title:"Antalya → Göreme",stay:"gor",
+  legs:[["@ant","@gor","6:29"]],
+  stops:[["Lunch in Konya","Mevlana Museum Konya","About halfway. Mevlana Museum makes a good 1-hr break.",1]],
+  warn:"<b>Snow possible</b> over the Taurus mountains. Ask the car hire for winter tyres and check the weather the night before."},
+ {d:22,title:"Cappadocia",stay:"gor",
+  stops:[["Hot air balloon","Göreme","Sunrise, around 6:30 pickup. Confirm the night before."],
+         ["Cave city","Göreme Open Air Museum","Rock-cut churches and cave homes."],
+         ["Uçhisar Castle","Uçhisar Castle","Best view over the valleys."],
+         ["Derinkuyu Underground City","Derinkuyu Underground City","Warm inside on a cold day.",1]],
+  info:"<b>Balloons are often cancelled in January.</b> If today's flight is off, ask to move it to tomorrow morning."},
+ {d:23,title:"Göreme → Istanbul",stay:"ist2",
+  legs:[["@gor","@ist2","7:34"]],
+  stops:[["Balloon backup","Göreme","Only if yesterday's flight was cancelled."]],
+  warn:"<b>Consider flying.</b> Kayseri and Nevşehir airports fly direct to Istanbul in about 1 hr 20 min. 7.5 hrs of driving after a 6 am balloon is a lot."},
+ {d:24,title:"Istanbul, then fly",stay:"ist2",
+  stops:[["Taksim Square","Taksim Square Istanbul",""],
+         ["Istiklal Street","Istiklal Avenue Istanbul","Ride the red tram one way."],
+         ["Galata Tower","Galata Tower","Book a time slot online."],
+         ["Ortaköy Mosque","Ortaköy Mosque","On the Bosphorus; try kumpir nearby."]],
+  warn:"<b>Night of 24 Jan:</b> Istanbul checks out on the 24th and Madina checks in on the 25th. Fine if it's an overnight flight; otherwise you're one night short."},
+ {d:25,title:"Madina",stay:"mad",
+  stops:[["Masjid an-Nabawi","Masjid an-Nabawi",""],
+         ["Riyad ul-Jannah","Masjid an-Nabawi","Book your slot in the Nusuk app."],
+         ["Masjid Quba","Quba Mosque Madina","",1]]},
+ {d:26,title:"Madina → Makkah · Umrah",stay:"mak",
+  stops:[["Ihram at the miqat","Dhul Hulayfah Mosque","Masjid Dhul Hulayfah, the miqat for travellers from Madina."],
+         ["Umrah","Masjid al-Haram",""]],
+  info:"<b>Haramain train</b> connects Madina and Makkah. Book ahead."},
+ {d:27,title:"Makkah",stay:"mak",stops:[["Masjid al-Haram","Masjid al-Haram",""]]},
+ {d:28,title:"Fly home",stops:[["Check out & airport","King Abdulaziz International Airport Jeddah","Confirm your flight time and terminal."]]}
+];
+
+const dd=d=>new Date(YEAR,0,d);
+const fmt=d=>dd(d).toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
+const wk=d=>dd(d).toLocaleDateString("en-GB",{weekday:"short"});
+function status(){
+  const n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate());
+  if(t<dd(15)) return {s:"before",days:Math.round((dd(15)-t)/864e5)};
+  if(t>dd(28)) return {s:"after"};
+  return {s:"during",i:DAYS.findIndex(x=>dd(x.d).getTime()===t.getTime())};
+}
+const resolve=p=>p.startsWith("@")?hotelQ(p.slice(1)):p;
+const nameOf=(p,x)=>p.startsWith("@")?(S.hotel[p.slice(1)]||"Hotel"):p;
+const mins=t=>{const[h,m]=t.split(":").map(Number);return h*60+m;};
+const hm=m=>Math.floor(m/60)+" hr"+(m%60?" "+(m%60)+" min":"");
+const sid=(di,si)=>"s"+DAYS[di].d+"-"+si;
+const icoWarn='<svg width="20" height="20" viewBox="0 0 24 24" fill="#ff9500"><path d="M12 2 1 21h22L12 2zm0 6c.6 0 1 .4 1 1v5a1 1 0 0 1-2 0V9c0-.6.4-1 1-1zm0 9.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/></svg>';
+const icoInfo='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>';
+const icoCar='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M5 17h14M5 17v-5l2-5h10l2 5v5M5 12h14"/><circle cx="8" cy="17" r="1.5"/><circle cx="16" cy="17" r="1.5"/></svg>';
+const chev='<svg class="chev" width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg>';
+
+function renderNow(){
+  const st=status(),box=document.getElementById("now");
+  let tot=0,dn=0;DAYS.forEach((x,di)=>x.stops.forEach((s,si)=>{tot++;if(S.done[sid(di,si)])dn++;}));
+  const prog='<div class="ring"><div class="bar"><i style="width:'+(tot?dn/tot*100:0)+'%"></i></div><span class="ringt num">'+dn+' of '+tot+' places</span></div>';
+  if(st.s==="after"){box.innerHTML='<div class="k">Trip complete</div><h2>Welcome home. Umrah mubarak.</h2>'+prog;return;}
+  const idx=st.s==="before"?0:st.i, x=DAYS[idx];
+  const k=st.s==="before"?st.days+" days to go":"Today · Day "+(idx+1)+" of 14";
+  const h=st.s==="before"?"First up: "+x.title:x.title;
+  const sub=fmt(x.d)+(x.stay?" · Tonight: "+esc(S.hotel[x.stay]||STAYS.find(s=>s.id===x.stay).city):"");
+  let b="";
+  if(x.legs){const pts=x.legs.map(l=>resolve(l[0])).concat([resolve(x.legs[x.legs.length-1][1])]);
+    b+='<a class="pill fill" target="_blank" rel="noopener" href="'+dir(pts[0],pts[pts.length-1],pts.slice(1,-1))+'">Start Drive</a>';}
+  const ni=x.stops.findIndex((s,si)=>!S.done[sid(idx,si)]);
+  if(ni>-1) b+='<a class="pill'+(x.legs?"":" fill")+'" target="_blank" rel="noopener" href="'+place(x.stops[ni][1])+'">Next: '+x.stops[ni][0]+'</a>';
+  if(x.stay) b+='<a class="pill" target="_blank" rel="noopener" href="'+place(hotelQ(x.stay))+'">Hotel</a>';
+  box.innerHTML='<div class="k">'+k+'</div><h2>'+h+'</h2><p>'+sub+'</p><div class="pills">'+b+'</div>'+prog;
+}
+
+function dayBody(x,di){
+  let h="";
+  if(x.warn) h+='<div class="call warn">'+icoWarn+'<span>'+x.warn+'</span></div>';
+  if(x.info) h+='<div class="call info">'+icoInfo+'<span>'+x.info+'</span></div>';
+  if(x.legs){
+    const tot=x.legs.reduce((a,l)=>a+mins(l[2]),0);
+    h+='<div class="sublbl">Drives</div>';
+    x.legs.forEach(l=>{h+='<a class="leg" target="_blank" rel="noopener" href="'+dir(resolve(l[0]),resolve(l[1]))+'"><span class="ico car">'+icoCar+'</span><span class="lt2">'+esc(nameOf(l[0]))+' → '+esc(nameOf(l[1]))+'</span><span class="tm num">'+hm(mins(l[2]))+'</span>'+chev+'</a>';});
+    h+='<div class="total num">Total '+hm(tot)+' at the wheel</div>';
+  }
+  h+='<div class="sublbl">Places</div>';
+  x.stops.forEach((s,si)=>{const id=sid(di,si),c=!!S.done[id];
+    h+='<div class="stop'+(c?" done":"")+'"><input class="chk" type="checkbox" id="'+id+'" data-id="'+id+'"'+(c?" checked":"")+'><label for="'+id+'"><span class="n">'+s[0]+(s[3]?'<span class="sg">Suggested</span>':'')+'</span>'+(s[2]?'<span class="d">'+s[2]+'</span>':'')+'</label><a class="maplink" target="_blank" rel="noopener" href="'+place(s[1])+'">Map</a></div>';});
+  return h;
+}
+function renderDays(){
+  const st=status(),box=document.getElementById("days");box.innerHTML="";
+  DAYS.forEach((x,di)=>{
+    const isT=st.s==="during"&&st.i===di, past=(st.s==="during"&&di<st.i)||st.s==="after";
+    const open=S.open[x.d]!==undefined?S.open[x.d]:(isT||(st.s==="before"&&di===0));
+    const dn=x.stops.filter((s,si)=>S.done[sid(di,si)]).length;
+    const drive=x.legs?x.legs.reduce((a,l)=>a+mins(l[2]),0):0;
+    const city=x.stay?STAYS.find(s=>s.id===x.stay).city:"Home";
+    const m=(drive?hm(drive)+" drive · ":"")+(x.stay?"Night in "+city:"Flight home");
+    const all=dn===x.stops.length;
+    const btn=document.createElement("button");
+    btn.className="row dayrow"+(isT?" isToday":"")+(past?" isPast":"");
+    btn.setAttribute("aria-expanded",open);btn.dataset.d=x.d;
+    btn.innerHTML='<span class="cal"><b>'+wk(x.d)+'</b><span class="num">'+x.d+'</span></span><span class="dt"><span class="t">'+x.title+(all?'<span class="badge">Done</span>':'')+'</span><div class="m num">Day '+(di+1)+' · '+m+(dn&&!all?' · '+dn+'/'+x.stops.length:'')+'</div></span>'+chev;
+    box.appendChild(btn);
+    if(open){const sub=document.createElement("div");sub.className="sub";sub.innerHTML=dayBody(x,di);box.appendChild(sub);}
+  });
+}
+function renderStays(){
+  const box=document.getElementById("stays");box.innerHTML="";
+  STAYS.forEach(s=>{const d=document.createElement("div");d.className="stay";
+    d.innerHTML='<div class="h"><b>'+s.city+'</b><span class="num">'+fmt(s.in)+' – '+fmt(s.out)+'</span></div><div class="inrow"><input class="field" id="h-'+s.id+'" data-h="'+s.id+'" placeholder="Hotel name" value="'+esc(S.hotel[s.id]||"")+'"><a class="pill" style="padding:9px 14px" target="_blank" rel="noopener" data-hl="'+s.id+'" href="'+place(hotelQ(s.id))+'">Map</a></div>';
+    box.appendChild(d);});
+}
+const PRE=[["pre1","Turkey visa / e-Visa for everyone"],["pre2","Saudi Umrah visa and Nusuk app set up"],["pre3","International Driving Permit"],["pre4","Car hire with winter tyres; one-way fee checked"],["pre5","Balloon booked for 22 Jan"],["pre6","Decide: fly or drive Göreme → Istanbul"],["pre7","Confirm where you sleep on 24 Jan"],["pre8","Google Maps offline areas downloaded"],["pre9","Turkey and Saudi SIM or eSIM"],["pre10","Travel insurance; passport copies on phone"],["pre11","Riyad ul-Jannah slot booked in Nusuk"]];
+const PACK=[["pk1","Warm coat, gloves, beanie (Cappadocia goes below 0°C)"],["pk2","Waterproof shoes with grip"],["pk3","Small towel for Pamukkale"],["pk4","Ihram, belt, unscented soap"],["pk5","Power bank and car charger"],["pk6","Plug adaptors: Type C/F Turkey, Type G Saudi"],["pk7","Turkish lira cash for tolls and parking"]];
+function renderList(id,items){const box=document.getElementById(id);box.innerHTML="";
+  items.forEach(([k,t])=>{const c=!!S.done[k];const r=document.createElement("div");r.className="stop"+(c?" done":"");
+    r.innerHTML='<input class="chk" type="checkbox" id="'+k+'" data-id="'+k+'"'+(c?" checked":"")+'><label for="'+k+'"><span class="n">'+t+'</span></label>';box.appendChild(r);});}
+
+function all(){renderNow();renderDays();renderStays();renderList("pre",PRE);renderList("pack",PACK);document.getElementById("emnotes").value=S.em||"";}
+all();
+
+document.addEventListener("change",e=>{const id=e.target.dataset&&e.target.dataset.id;if(!id)return;
+  if(e.target.checked)S.done[id]=1;else delete S.done[id];save();
+  e.target.closest(".stop").classList.toggle("done",e.target.checked);renderNow();
+  if(id[0]==="s"){const y=window.scrollY;renderDays();window.scrollTo(0,y);}});
+document.addEventListener("input",e=>{const h=e.target.dataset&&e.target.dataset.h;
+  if(h){S.hotel[h]=e.target.value;save();const a=document.querySelector('[data-hl="'+h+'"]');if(a)a.href=place(hotelQ(h));}
+  if(e.target.id==="emnotes"){S.em=e.target.value;save();}});
+document.addEventListener("focusout",e=>{if(e.target.dataset&&e.target.dataset.h){renderDays();renderNow();}});
+document.getElementById("days").addEventListener("click",e=>{const b=e.target.closest(".dayrow");if(!b)return;
+  const d=b.dataset.d;S.open[d]=b.getAttribute("aria-expanded")!=="true";save();const y=window.scrollY;renderDays();window.scrollTo(0,y);});
+const T={route:["Turkey & Umrah","Istanbul · Aegean · Antalya · Cappadocia · Madina · Makkah"],stays:["Hotels","Where you sleep each night"],check:["Checklist","Documents, bookings and packing"]};
+document.querySelectorAll(".tabbar button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".tabbar button").forEach(x=>x.setAttribute("aria-selected",x===b));
+  ["route","stays","check"].forEach(t=>document.getElementById("pane-"+t).hidden=t!==b.dataset.tab);
+  document.getElementById("ptitle").textContent=T[b.dataset.tab][0];document.getElementById("psub").textContent=T[b.dataset.tab][1];
+  window.scrollTo({top:0});}));
+const rb=document.getElementById("resetbox");
+rb.addEventListener("click",e=>{
+  if(e.target.id==="resetBtn")rb.innerHTML='<span style="flex:1">Clear every tick? Hotel names stay.</span><button id="rNo" class="cancel">Cancel</button><button id="rYes">Clear</button>';
+  else if(e.target.id==="rNo")rb.innerHTML='<button id="resetBtn">Clear All Ticks</button>';
+  else if(e.target.id==="rYes"){S.done={};save();all();rb.innerHTML='<button id="resetBtn">Clear All Ticks</button>';}});
+})();
+</script>
+
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(function(){});}</script>
+</body></html>
