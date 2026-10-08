@@ -47,27 +47,25 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .row{display:flex;align-items:center;gap:12px;padding:11px 16px;min-height:44px;position:relative}
 .row+.row::before{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep)}
 
-/* hero pass */
-.pass{margin-top:16px;border-radius:20px;color:#fff;padding:18px 18px 16px;position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#0a84ff 0%,#3a5bdc 55%,#5e3fc9 100%);box-shadow:0 10px 30px -12px #3a5bdc99}
-.pass::before{content:"";position:absolute;inset:0;opacity:.18;pointer-events:none;
-  background:radial-gradient(circle at 88% 12%,#fff 0 2px,transparent 3px) 0 0/22px 22px}
-.pass .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;position:relative}
-.pass .k{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
-.pass .big{font-family:var(--round);font-size:54px;font-weight:600;line-height:1;letter-spacing:-.02em;margin-top:6px}
-.pass .big small{font-size:19px;font-weight:500;letter-spacing:0;margin-left:6px;opacity:.9}
-.pass .ttl{font-family:var(--head);font-size:18px;font-weight:600;margin-top:6px}
-.pass .sub{font-size:14px;opacity:.85;margin-top:2px}
-.ringwrap{position:relative;width:64px;height:64px;flex:0 0 64px}
+/* compact trip bar */
+.pass{margin-top:12px;border-radius:16px;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:12px;
+  background:linear-gradient(120deg,#0a84ff 0%,#3a5bdc 60%,#5e3fc9 100%)}
+.pass .txt{flex:1;min-width:0}
+.pass .big{font-family:var(--round);font-size:26px;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.pass .big small{font-size:15px;font-weight:500;margin-left:5px;opacity:.9}
+.pass .sub{font-size:13px;opacity:.85;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ringwrap{position:relative;width:44px;height:44px;flex:0 0 44px}
 .ringwrap svg{transform:rotate(-90deg)}
-.ringwrap span{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;font-weight:700}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:16px;padding-top:14px;border-top:1px solid #ffffff33;position:relative}
-.stats div{text-align:center}
-.stats b{display:block;font-family:var(--round);font-size:19px;font-weight:600}
-.stats span{font-size:11px;opacity:.8;text-transform:uppercase;letter-spacing:.04em}
-.pass .acts{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;position:relative}
-.gbtn{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 14px;border-radius:12px;font-size:15px;font-weight:600;color:#fff;background:#ffffff2e;border:0;cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.gbtn.solid{background:#fff;color:#2f55d4}
+.ringwrap span{position:absolute;inset:0;display:grid;place-items:center;font-size:11px;font-weight:700}
+.stickytop{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bg);margin:0 -16px;padding:0 16px}
+.stickytop .gh{padding-top:16px}
+.maptoggle{width:100%;border:0;background:var(--cell);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;font-size:17px;color:var(--label);cursor:pointer;text-align:left}
+.maptoggle .ico{width:30px;height:30px;border-radius:8px;background:var(--blue);display:grid;place-items:center;flex:0 0 30px}
+.maptoggle small{display:block;font-size:13px;color:var(--label2)}
+.maptoggle .chev{color:#c7c7cc;transition:transform .2s}
+.maptoggle[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.maptoggle[aria-expanded="true"]{border-radius:14px 14px 0 0}
+.mapcard.attached{border-radius:0 0 14px 14px;border-top:.5px solid var(--sep)}
 
 /* map */
 .mapcard{padding:10px 10px 12px}
@@ -183,19 +181,22 @@ textarea.field{width:100%;min-height:90px;resize:vertical;border-radius:14px;bac
   <main id="pane-route">
     <div class="pass" id="pass"></div>
 
-    <div class="gh flex"><span>Your route</span></div>
-    <div class="group mapcard">
-      <svg id="map" viewBox="0 0 345 262" role="img" aria-label="Route map of Turkey"></svg>
-      <button class="saudi" id="saudiBtn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#30b0c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg><span style="flex:1">Then Madina &amp; Makkah<small>25 – 28 Jan · Umrah</small></span><svg width="8" height="14" viewBox="0 0 10 16" fill="none" stroke="#c7c7cc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg></button>
-      <div class="legend"><span><i style="background:#34c759"></i>Done</span><span><i style="background:#007aff"></i>Selected day</span><span><i style="background:#c7cbd4"></i>Coming up</span></div>
+    <div class="stickytop">
+      <div class="gh flex"><span>Day by day</span><a href="#" id="jumpToday">Today</a></div>
+      <div class="strip" id="strip"></div>
     </div>
-
-    <div class="gh flex"><span>Day by day</span><a href="#" id="jumpToday">Today</a></div>
-    <div class="strip" id="strip"></div>
     <div class="legend2"><span><i style="background:#ff9500"></i>Drive day</span><span><i style="background:#30b0c7"></i>Saudi</span><span><i style="background:#34c759"></i>All done</span></div>
     <div style="height:10px"></div>
     <div class="dcard" id="dcard"></div>
     <div class="gf">Swipe the card left or right to change day. Drive times are from your sheet, without stops.</div>
+
+    <div class="gh">Whole trip</div>
+    <button class="maptoggle" id="mapToggle" aria-expanded="false"><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg></span><span style="flex:1">Route map<small>9 cities · tap one to open its day</small></span><svg class="chev" width="8" height="14" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg></button>
+    <div class="group mapcard attached" id="mapWrap" hidden>
+      <svg id="map" viewBox="0 0 345 262" role="img" aria-label="Route map of Turkey"></svg>
+      <button class="saudi" id="saudiBtn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#30b0c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg><span style="flex:1">Then Madina &amp; Makkah<small>25 – 28 Jan · Umrah</small></span><svg width="8" height="14" viewBox="0 0 10 16" fill="none" stroke="#c7c7cc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l6 6-6 6"/></svg></button>
+      <div class="legend"><span><i style="background:#34c759"></i>Done</span><span><i style="background:#007aff"></i>Selected day</span><span><i style="background:#c7cbd4"></i>Coming up</span></div>
+    </div>
   </main>
 
   <main id="pane-stays" hidden>
@@ -372,23 +373,13 @@ let sel=(S.sel!=null&&DAYS[S.sel])?S.sel:defaultSel();
 function renderPass(){
   const st=status(),box=document.getElementById("pass");
   let tot=0,dn=0;DAYS.forEach((x,di)=>x.stops.forEach((s,si)=>{tot++;if(S.done[sid(di,si)])dn++;}));
-  const pct=tot?dn/tot:0, C=2*Math.PI*26;
-  const ring='<div class="ringwrap"><svg width="64" height="64"><circle cx="32" cy="32" r="26" fill="none" stroke="#ffffff33" stroke-width="6"/><circle cx="32" cy="32" r="26" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-dasharray="'+(C*pct)+' '+C+'"/></svg><span class="num">'+Math.round(pct*100)+'%</span></div>';
-  let k,big,ttl,sub,idx;
-  if(st.s==="before"){idx=0;k="Countdown";big=st.days+'<small>day'+(st.days===1?"":"s")+' to go</small>';ttl="Fly to Istanbul";sub=fmtL(15);}
-  else if(st.s==="after"){k="Trip complete";big='14<small>days</small>';ttl="Welcome home";sub="Umrah mubarak";}
-  else{idx=st.i;const x=DAYS[idx];k="Today";big=(idx+1)+'<small>of 14</small>';ttl=x.title;sub=x.stay?"Tonight: "+esc(S.hotel[x.stay]||STAYS.find(s=>s.id===x.stay).city):"Flight home";}
-  let acts="";
-  if(st.s==="during"){const x=DAYS[idx];
-    if(x.legs){const pts=x.legs.map(l=>resolve(l[0])).concat([resolve(x.legs[x.legs.length-1][1])]);
-      acts+='<a class="gbtn solid" target="_blank" rel="noopener" href="'+dir(pts[0],pts[pts.length-1],pts.slice(1,-1))+'">'+ic.car+' Start drive</a>';}
-    const ni=x.stops.findIndex((s,si)=>!S.done[sid(idx,si)]);
-    if(ni>-1) acts+='<a class="gbtn'+(x.legs?"":" solid")+'" target="_blank" rel="noopener" href="'+place(x.stops[ni][1])+'">Next: '+esc(x.stops[ni][0])+'</a>';
-    if(x.stay) acts+='<a class="gbtn" target="_blank" rel="noopener" href="'+place(hotelQ(x.stay))+'">'+ic.bed+' Hotel</a>';
-  }
-  box.innerHTML='<div class="top"><div><div class="k">'+k+'</div><div class="big num">'+big+'</div><div class="ttl">'+ttl+'</div><div class="sub">'+sub+'</div></div>'+ring+'</div>'+
-    (acts?'<div class="acts">'+acts+'</div>':'')+
-    '<div class="stats num"><div><b>14</b><span>Days</span></div><div><b>9</b><span>Cities</span></div><div><b>'+Math.round(totalDrive/60)+'h</b><span>Driving</span></div><div><b>'+dn+'/'+tot+'</b><span>Places</span></div></div>';
+  const pct=tot?dn/tot:0, C=2*Math.PI*18;
+  const ring='<div class="ringwrap" title="'+dn+' of '+tot+' places"><svg width="44" height="44"><circle cx="22" cy="22" r="18" fill="none" stroke="#ffffff33" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-dasharray="'+(C*pct)+' '+C+'"/></svg><span class="num">'+Math.round(pct*100)+'%</span></div>';
+  let big,sub;
+  if(st.s==="before"){big=st.days+'<small>day'+(st.days===1?"":"s")+' to go</small>';sub="Fly to Istanbul · "+fmt(15)+" · "+dn+"/"+tot+" places";}
+  else if(st.s==="after"){big='Welcome home';sub="Umrah mubarak";}
+  else{const x=DAYS[st.i];big='Day '+(st.i+1)+'<small>of 14</small>';sub=x.title+(x.stay?" · "+esc(S.hotel[x.stay]||STAYS.find(s=>s.id===x.stay).city):"");}
+  box.innerHTML='<div class="txt"><div class="big num">'+big+'</div><div class="sub">'+sub+'</div></div>'+ring;
 }
 
 /* ---------- map ---------- */
@@ -505,13 +496,17 @@ document.getElementById("map").addEventListener("click",e=>{const g=e.target.clo
   const k=Object.keys(N)[Array.from(g.parentNode.querySelectorAll(".node")).indexOf(g)];
   const days=DAYS.map((d,i)=>d.nodes&&d.nodes.includes(k)?i:-1).filter(i=>i>=0);
   const nx=days.find(i=>i>sel); select(nx!==undefined?nx:days[0],true);
-  document.getElementById("dcard").scrollIntoView({behavior:"smooth",block:"start"});}});
-document.getElementById("saudiBtn").addEventListener("click",()=>{select(DAYS[sel].sa&&sel<13?sel+1:10,true);document.getElementById("dcard").scrollIntoView({behavior:"smooth",block:"start"});});
+  window.scrollTo({top:0,behavior:"smooth"});}});
+document.getElementById("saudiBtn").addEventListener("click",()=>{select(DAYS[sel].sa&&sel<13?sel+1:10,true);window.scrollTo({top:0,behavior:"smooth"});});
 document.getElementById("jumpToday").addEventListener("click",e=>{e.preventDefault();select(defaultSel(),true);});
 let tx=null,ty=null;const dc=document.getElementById("dcard");
 dc.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
 dc.addEventListener("touchend",e=>{if(tx==null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;tx=null;
   if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)select(sel+(dx<0?1:-1),true);},{passive:true});
+const mt=document.getElementById("mapToggle"),mw=document.getElementById("mapWrap");
+function setMap(o){mt.setAttribute("aria-expanded",o);mw.hidden=!o;S.map=o;save();}
+setMap(!!S.map);
+mt.addEventListener("click",()=>setMap(mw.hidden));
 const T={route:"Turkey & Umrah",stays:"Hotels",check:"Checklist"};
 document.querySelectorAll(".tabbar button").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".tabbar button").forEach(x=>x.setAttribute("aria-selected",x===b));
